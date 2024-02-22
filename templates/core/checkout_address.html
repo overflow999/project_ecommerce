@@ -1,0 +1,67 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <title>Checkout</title>
+  </head>
+  <body>
+  
+
+    <div class="d-lg-flex half">
+      <div class="contents order-2 order-md-1">
+        <img src="{% static 'images/bg_1.jpg' %}" alt="logo" width="100%" height="100%">
+      </div>
+
+      <div class="container-fluid">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-sm-6 login-section-wrapper">
+            <div class="login-wrapper my-auto">
+            {% if payment_allow == "allow" %}
+              <a href="{% url 'payment' %}" class="btn btn-block btn-primary" style="margin-top: 250px;">Go For Payment</a>
+            {% else %}
+            <h1 class="login-title badge">Checkout Address </h1>
+            {% if messages %}
+            {% for message in messages %}
+            <h1 class="login-title badge badge-light" style="color:red">{{message}}</h1>
+            {% endfor %}
+            {% endif %}
+            <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p>
+            <form  method='post'>
+			           {% csrf_token %}
+                           {{form}}
+
+              <input type="submit" id="checkout" name="checkout" value="Checkout" class="btn btn-block btn-primary" style="margin-top: 15px;">
+              {% endif %}
+            </form>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    
+  </div>
+    
+    
+
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>
